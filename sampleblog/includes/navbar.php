@@ -22,7 +22,12 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">My Profile</a></li>
-            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            <li>
+              <form method="POST" action="allcode.php">
+                <button type="submit" class="dropdown-item" name="logout_btn">Logout</button>
+              </form>
+
+            </li>
           </ul>
 
         <?php else : ?>  
