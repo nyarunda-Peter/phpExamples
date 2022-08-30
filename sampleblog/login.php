@@ -1,5 +1,15 @@
 <?php
 	session_start();
+
+	if (isset($_SESSION['auth'])) {
+
+		if (isset($_SESSION['message'])) {
+			// code...
+			$_SESSION['message'] = "You are already logged in";
+		}
+		header("Location: index.php");
+		exit(0);
+	}
 	Include('includes/header.php');
 	Include('includes/navbar.php');
 ?>

@@ -1,7 +1,14 @@
 <?php
 session_start();
+if (isset($_SESSION['auth'])) {
+	$_SESSION['message'] = "You are already logged in	";
+	header("Location: index.php");
+	exit(0);
+}
+
 Include('includes\header.php');
 Include('includes\navbar.php');
+
 ?>
 
 <div class ="py-5">

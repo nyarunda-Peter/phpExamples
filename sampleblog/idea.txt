@@ -1,0 +1,13 @@
+users
+{
+	Admin
+	{
+		Permissions: Add, Delete, Edit, View;
+		Objects: Images, Descriptions;
+	}
+
+	Normal Users
+	{
+		Permissions : View;
+		Objects: Images, Descriptions;
+	}
