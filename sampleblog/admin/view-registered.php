@@ -19,8 +19,9 @@ Include('includes/header.php');
     		
     		<div class="card">
     			<div class="card-header">
-    				<h4>Registered Users</h4>
-    					<a href="register-add.php" class="btn btn-primary float-end">Add Admin</a>
+    				<h4>Registered Users
+    					<a href="register-add.php" class="btn btn-primary float-end">Add User</a>
+					</h4>
     			</div>
     			<div class="card-body">
     				<table class="table table-bordered">
