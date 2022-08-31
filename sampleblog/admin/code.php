@@ -2,6 +2,63 @@
 
 Include('authentication.php');
 
+if (isset($_POST['add_category'])) 
+{
+	$name = mysqli_real_escape_string($con, $_POST['name']);
+	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	$description = mysqli_real_escape_string($con, $_POST['description']);
+
+	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
+	$meta_description = mysqli_real_escape_string($con, $_POST['meta_description']);
+	$meta_keyword = mysqli_real_escape_string($con, $_POST['meta_keyword']);
+
+	$navbar_status = mysqli_real_escape_string($con, $_POST['navbar_status'] == true ? '1' : '0');
+	$status = mysqli_real_escape_string($con, $_POST['status'] == true ? '1' : '0');
+
+	$query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keyword, navbar_status, status) VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keyword', '$navbar_status', '$status')";
+	$query_run = mysqli_query($con, $query);
+
+	if ($query_run) 
+	{
+		$_SESSION['message'] = "Category added successfully";
+		header('Location: category-view.php');
+		exit(0);
+	}
+	else
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again$$$";
+		header('Location: category-add.php');
+		exit(0);
+	}
+
+}
+
+
+
+
+if (isset($_POST['user_delete'])) 
+{
+	$user_id = $_POST['user_delete'];
+
+	$query = "DELETE FROM users WHERE id='$user_id'";
+	$query_run = mysqli_query($con, $query);
+
+	if ($query_run) 
+	{
+		$_SESSION['message'] = "User deleted successfully";
+		header('Location: view-registered.php');
+		exit(0);
+	}
+	else
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again";
+		header('Location: view-registered.php');
+		exit(0);
+	}
+
+
+}
+
 
 if (isset($_POST['add_user'])) {
 
@@ -40,7 +97,7 @@ if (isset($_POST['add_user'])) {
 			}
 			else
 			{
-				$_SESSION['message'] = "Something went wrong";
+				$_SESSION['message'] = "Something went wrong, pleae try again";
 				header('Location: view-registered.php');
 				exit(0);
 			}

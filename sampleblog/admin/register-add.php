@@ -6,10 +6,10 @@ Include('includes/header.php');
 ?>
 
 <div class="container-fluid px-4">
-    <h4 class="mt-4"> Add Users</h4>
+    <h4 class="mt-4">Users</h4>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Dashboard</li>
-        <li class="breadcrumb-item">Add User</li>
+        <li class="breadcrumb-item">Add Users</li>
     </ol>
     <div class="row">
 
@@ -20,7 +20,8 @@ Include('includes/header.php');
             <div class="card">
                 <div class="card-header">
                     <h4>Add Users
-                        <a href="view-registered.php" class="btn btn-danger float-end">Back</a>
+                        <a href="view-registered.php" class="btn btn-primary float-end m-2">View Users</a>
+                        <a href="index.php" class="btn btn-success float-end m-2">Back Home</a>
                     </h4>
                 </div>
                 <div class="card-body">
