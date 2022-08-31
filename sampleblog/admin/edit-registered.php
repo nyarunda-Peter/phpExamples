@@ -72,8 +72,8 @@ Include('includes/header.php');
                                             <label for="">Role As</label>
                                             <select name="role_as" required class="form-control">
                                                 <option value="">--Select Role--</option>
-                                                <option value="1" admin" <?= $user['role_as'] == '1' ? 'selected': '' ?>>Admin</option>
-                                                <option value="0" user" <?= $user['role_as'] == '0' ? 'selected': '' ?>>User</option>
+                                                <option value="1" name="admin" <?= $user['role_as'] == '1' ? 'selected': '' ?>>Admin</option>
+                                                <option value="0" name="user" <?= $user['role_as'] == '0' ? 'selected': '' ?>>User</option>
                                                 
                                             </select>
                                         </div>
