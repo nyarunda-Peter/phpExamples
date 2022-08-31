@@ -60,7 +60,12 @@ Include('includes/header.php');
 			    							?>  					
 			    							</td>
 			    							<td><a href="edit-registered.php?id=<?=$row['id']?>" class="btn btn-success">Edit</a></td>
-			    							<td><button type="button"class="btn btn-success">Delete</button></td>
+
+			    							<td>
+			    								<form action="code.php" method="POST">
+			    									<button type="submit" class="btn btn-danger" name="user_delete" value="<?=$row['id']?>">Delete</button>	
+			    								</form>
+			    							</td>
 			    						</tr>
     									<?php
     								}

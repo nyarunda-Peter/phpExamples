@@ -11,3 +11,34 @@ users
 		Permissions : View;
 		Objects: Images, Descriptions;
 	}
+
+tables
+{
+	Users
+	{
+		id: 11 digits, Auto increment, PK;
+		fname: varchar;
+		lname: varchar;
+		email: varchar;
+		password: varchar;
+		role_as: TINYINT([1:Admin, 0:Normal User]), default = 0;
+		status: TINYINT, , default = 0;
+		created_at: TIMESTAMP(Current);
+	}
+
+	Categories
+	[HTML, PHP, Laravel, Bootstrap, Java, Python]
+	{
+		id: 11 digits, Auto increment, PK;
+		name: varchar 
+		slug: varchar;
+		description: text, nullable;
+		meta_title: varchar(SEO Purpose);
+		meta_description: MEDIUMTEXT, nullable ;
+		meta_keyword: MEDIUMTEXT, nullable ;
+		navbar_status: TINYINT , default = 0, nullable ;
+		status: TINYINT , default = 0, nullable ;
+		created_at: CURRENT_TIMESTAMP, nullable ;
+	}
+
+}
