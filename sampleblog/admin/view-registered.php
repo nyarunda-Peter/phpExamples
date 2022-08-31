@@ -20,7 +20,8 @@ Include('includes/header.php');
     		<div class="card">
     			<div class="card-header">
     				<h4>Registered Users
-    					<a href="register-add.php" class="btn btn-primary float-end">Add User</a>
+    					<a href="register-add.php" class="btn btn-primary float-end m-2">Add User</a>
+    					<a href="index.php" class="btn btn-success float-end m-2">Back Home</a>
 					</h4>
     			</div>
     			<div class="card-body">
