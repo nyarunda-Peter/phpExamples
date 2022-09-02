@@ -26,7 +26,8 @@ Include('includes/header.php');
 
                     <?php
 
-                    if (isset($_GET['id'])) {
+                    if (isset($_GET['id'])) 
+                    {
                         $user_id = $_GET['id'];
                         $users = "SELECT * FROM users WHERE id='$user_id'";
                         $users_run = mysqli_query($con, $users);
@@ -36,8 +37,6 @@ Include('includes/header.php');
                             
                             foreach ($users_run as $user) {
                                 ?>
-
-
                                 <form action="code.php" method="POST">
 
                                     <input type="hidden" name="user_id" value=" <?=$user['id']; ?>">

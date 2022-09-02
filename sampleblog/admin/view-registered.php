@@ -20,7 +20,8 @@ Include('includes/header.php');
     		<div class="card">
     			<div class="card-header">
     				<h4>Registered Users
-    					<a href="register-add.php" class="btn btn-primary float-end">Add User</a>
+    					<a href="index.php" class="btn btn-success float-end m-2">Dashboard</a>	
+						<a href="register-add.php" class="btn btn-primary float-end m-2">Add User</a>
 					</h4>
     			</div>
     			<div class="card-body">
@@ -59,7 +60,7 @@ Include('includes/header.php');
 		    									}
 			    							?>  					
 			    							</td>
-			    							<td><a href="edit-registered.php?id=<?=$row['id']?>" class="btn btn-success">Edit</a></td>
+			    							<td><a href="edit-registered.php?id=<?=$row['id']?>" class="btn btn-primary">Edit</a></td>
 
 			    							<td>
 			    								<form action="code.php" method="POST">

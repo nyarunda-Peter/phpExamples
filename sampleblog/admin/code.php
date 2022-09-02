@@ -2,6 +2,62 @@
 
 Include('authentication.php');
 
+
+if(isset($_POST['category_delete']))
+{
+	$category_id = $_POST['category_delete'];
+	//2 = delete
+	$query = "UPDATE categories SET status='2' WHERE id='$category_id' LIMIT 1";
+	$query_run = mysqli_query($con, $query);
+
+	if ($query_run) 
+	{
+		$_SESSION['message'] = "Category deleted successfully";
+		header('Location: category-view.php');
+		exit(0);
+	}
+	else
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again";
+		header('Location: category-view.php');
+		exit(0);
+	}
+
+
+}
+
+if(isset($_POST['category_update']))
+{
+	$category_id = $_POST['category_id'];
+	$name = mysqli_real_escape_string($con, $_POST['name']);
+	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	$description = mysqli_real_escape_string($con, $_POST['description']);
+
+	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
+	$meta_description = mysqli_real_escape_string($con, $_POST['meta_description']);
+	$meta_keyword = mysqli_real_escape_string($con, $_POST['meta_keyword']);
+
+	$navbar_status = mysqli_real_escape_string($con, $_POST['navbar_status'] == true ? '1' : '0');
+	$status = mysqli_real_escape_string($con, $_POST['status'] == true ? '1' : '0');
+
+	$query = "UPDATE categories SET name='$name', slug='$slug', description='$description', meta_title='$meta_title', meta_description='$meta_description', meta_keyword='$meta_keyword', navbar_status='$navbar_status', status='$status' WHERE id='$category_id'";
+	$query_run = mysqli_query($con, $query);
+
+	if ($query_run) 
+	{
+		$_SESSION['message'] = "Category edited successfully";
+		header('Location: category-view.php');
+		exit(0);
+	}
+	else
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again";
+		header('Location: category-edit.php?id='.$category_id);
+		exit(0);
+	}
+
+}
+
 if (isset($_POST['add_category'])) 
 {
 	$name = mysqli_real_escape_string($con, $_POST['name']);
