@@ -20,8 +20,13 @@ Include('includes/header.php');
             <div class="card">
                 <div class="card-header">
                     <h4>Add Category
+<<<<<<< HEAD:sampleblog/admin/category-add.php
+                    <a href="index.php" class="btn btn-success float-end m-2">Dashboard</a>	
+                        <a href="category-view.php" class="btn btn-primary float-end m-2">View Categories</a>
+=======
                         <a href="category-view.php" class="btn btn-primary float-end m-2">View Category</a>
                         <a href="index.php" class="btn btn-success float-end m-2">Back Home</a>
+>>>>>>> 7902ae74e33beb4c8106d8e5eda0685fcf99a15c:sampleblog/admin/cateory-add.php
                     </h4>
                 </div>
                 <div class="card-body">

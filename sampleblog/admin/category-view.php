@@ -20,8 +20,13 @@ Include('includes/header.php');
             <div class="card">
                 <div class="card-header">
                     <h4>View Category
+<<<<<<< HEAD
+                        <a href="index.php" class="btn btn-success float-end m-2">Dashboard</a>	
+                        <a href="category-add.php" class="btn btn-primary float-end m-2">Add Category</a>
+=======
                         <a href="category-add.php" class="btn btn-primary float-end m-2">Add Category</a>
                         <a href="index.php" class="btn btn-success float-end m-2">Back Home</a>
+>>>>>>> 7902ae74e33beb4c8106d8e5eda0685fcf99a15c
                     </h4>
                 </div>
                 <div class="card-body">
@@ -39,6 +44,64 @@ Include('includes/header.php');
                             </thead>
                             <tbody>
 
+<<<<<<< HEAD
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-stripe">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $category = "SELECT * FROM categories WHERE status!='2'";
+                                    $category_run = mysqli_query($con, $category);
+
+                                    if(mysqli_num_rows($category_run) > 0)
+                                    {
+                                        foreach($category_run as $item)
+                                        {
+                                            ?>
+                                                <tr>
+                                                    <td><?= $item['id']?></td>
+                                                    <td><?= $item['name'];?> </td>
+                                                    <td>
+                                                        <?php
+                                                            //ternary function
+                                                            /*<?= $item['status'] == '1' ? 'Hidden' : 'Visible'?>*/
+                                                            if($item['status'] == '1'){echo 'Hidden';} else {echo 'Visible';}
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="category-edit.php?id=<?= $item['id']?>" class="btn btn-info">Edit</a>
+                                                    </td>
+                                                    <td>
+                                                        <form action="code.php" method="POST">
+                                                            <button type="submit" name="category_delete" value="<?= $item['id']?>" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                        }
+                                    }                     
+                                    else
+                                    {
+                                        ?>
+                                            <tr>
+                                                <td colspan="5">No Record Found</td>
+                                            </tr>
+                                        <?php
+                                    }
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+=======
                     <?php
                         $category = "SELECT * FROM categories";
                         $category_run = mysqli_query($con, $category);
@@ -90,6 +153,7 @@ Include('includes/header.php');
                         
                     </div>
 
+>>>>>>> 7902ae74e33beb4c8106d8e5eda0685fcf99a15c
                 </div>
             </div>
         </div>
