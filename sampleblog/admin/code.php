@@ -2,6 +2,43 @@
 
 Include('authentication.php');
 
+if(isset($_POST['post_add']))
+{
+	$category_id = $_POST['category_id'];
+	$name = mysqli_real_escape_string($con, $_POST['name']);
+	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	$description = mysqli_real_escape_string($con, $_POST['description']);
+
+	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
+	$meta_description = mysqli_real_escape_string($con, $_POST['meta_description']);
+	$meta_keyword = mysqli_real_escape_string($con, $_POST['meta_keyword']);
+
+	$image = $_FILES['image']['name'];
+	//rename this image
+	$image_extension = pathinfo($image, PATHINFO_EXTENSION);
+	$filename = time().'.'.$image_extension;
+
+	$status = mysqli_real_escape_string($con, $_POST['status'] == true ? '1' : '0');
+
+	$query = "INSERT INTO posts (category_id, name, slug, description, image, meta_title, meta_description, meta_keyword, status) VALUES ('$category_id', '$name', '$slug', '$description', '$filename', '$meta_title', '$meta_description', '$meta_keyword', '$status')";
+	$query_run = mysqli_query($con, $query);
+
+	if($query_run)
+	{
+		move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/'.$filename);
+		$_SESSION['message'] = "Post created successfully";
+		//post-view.php
+		header('Location: post-add.php');
+		exit(0); 
+	}
+	else
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again";
+		header('Location: post-add.php');
+		exit(0);
+	}
+}
+
 
 if(isset($_POST['category_delete']))
 {
