@@ -30,7 +30,7 @@ tables
 	[HTML, PHP, Laravel, Bootstrap, Java, Python]
 	{
 		id: 11 digits, Auto increment, PK;
-		name: varchar 
+		name: varchar;
 		slug: varchar;
 		description: text, nullable;
 		meta_title: varchar(SEO Purpose);
@@ -39,6 +39,21 @@ tables
 		navbar_status: TINYINT , default = 0, nullable ;
 		status: TINYINT , default = 0, nullable ;
 		created_at: CURRENT_TIMESTAMP, nullable ;
+	}
+
+	posts
+	{
+		id: PK, 11 digits, Auto increment;
+		category_id: FK, 11 digits;
+		name: varchar;
+		slug: varchar;
+		description: text, nullable;
+		image: varchar, nullable;
+		meta_title: varchar;
+		meta_description: MEDIUMTEXT;
+		meta_keyword: MEDIUMTEXT;
+		status: TINYINT, default=0, nullable;
+		created_at: CURRENT_TIMESTAMP, nullable;
 	}
 
 }
