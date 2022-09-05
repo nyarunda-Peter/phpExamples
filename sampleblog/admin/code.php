@@ -2,6 +2,102 @@
 
 Include('authentication.php');
 
+//not yet working-DELETE POSTS!!!!!
+
+if(isset($_POST['post_delete_btn']))
+{
+	$post_id = $_POST['post_delete_btn'];
+	
+	$check_img_query = "SELECT * FROM posts WHERE id='$post_id' LIMIT 1";
+	$check_img_res = mysqli_query($con, $check_img_query);
+	$res_data = mysqli_fetch_array($check_img_res);
+	$image = $res_data['image'];
+
+	$query = "DELETE FROM posts WHERE id='$post_id' LIMIT 1";
+	$query_run = mysqli_query($con, $query);
+	
+
+	if (!$query_run) 
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again";
+		header('Location: post-view.php');
+		exit(0);
+	}
+	else
+	{
+		if(file_exists('../uploads/posts/'.$image))
+		{
+			unlink("../uploads/posts/".$image);
+		}
+		$_SESSION['message'] = "Post deleted successfully";
+		header('Location: post-view.php');
+		exit(0);
+	}
+	
+}
+
+
+if(isset($_POST['post_update']))
+{
+	$post_id = $_POST['post_id'];
+
+	$category_id = $_POST['category_id'];
+	$name = mysqli_real_escape_string($con, $_POST['name']);
+	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	$description = mysqli_real_escape_string($con, $_POST['description']);
+
+	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
+	$meta_description = mysqli_real_escape_string($con, $_POST['meta_description']);
+	$meta_keyword = mysqli_real_escape_string($con, $_POST['meta_keyword']);
+
+	$old_filename = $_POST['old_image'];
+	$image = $_FILES['image']['name'];
+
+	$update_filename = "";
+	if($image != NULL)
+	{
+		//rename this image
+		$image_extension = pathinfo($image, PATHINFO_EXTENSION);
+		$filename = time().'.'.$image_extension;
+
+		$update_filename = $filename;
+	}
+	else
+	{
+		//fetch filename
+		$update_filename = $old_filename;
+	}
+	
+
+	$status = mysqli_real_escape_string($con, $_POST['status'] == true ? '1' : '0');
+
+	$query = "UPDATE posts SET category_id='$category_id', name='$name', slug='$slug', description='$description', image='$update_filename', meta_title='$meta_title', meta_description='$meta_description', meta_keyword='$meta_keyword', status='$status' WHERE id='$post_id'";
+	$query_run = mysqli_query($con, $query);
+
+	if($query_run)
+	{
+		if($image != NULL)
+		{
+			if(file_exists('../uploads/posts/'.$old_filename))
+			{
+				unlink("../uploads/posts/".$old_filename);
+			}
+			move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/posts/'.$update_filename);
+		}
+		$_SESSION['message'] = "Post updated successfully";
+		//post-view.php
+		header('Location: post-view.php');
+		exit(0); 
+	}
+	else
+	{
+		$_SESSION['message'] = "Something went wrong, pleae try again";
+		header('Location: post-edit.php?id='.$post_id);
+		exit(0);
+	}
+
+}
+
 if(isset($_POST['post_add']))
 {
 	$category_id = $_POST['category_id'];
@@ -25,10 +121,10 @@ if(isset($_POST['post_add']))
 
 	if($query_run)
 	{
-		move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/'.$filename);
+		move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/posts/'.$filename);
 		$_SESSION['message'] = "Post created successfully";
 		//post-view.php
-		header('Location: post-add.php');
+		header('Location: post-view.php');
 		exit(0); 
 	}
 	else
