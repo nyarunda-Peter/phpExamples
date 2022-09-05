@@ -11,9 +11,7 @@
 
 				<?php include('message.php'); ?>
 
-				<h3>Welcome to a sample blog page</h3>
- 				
- 				
+				
 
 			</div>
 		</div>
@@ -23,3 +21,4 @@
 <?php
 	Include('includes\footer.php');
 ?>
+

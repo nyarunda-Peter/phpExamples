@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 if (isset($_SESSION['auth'])) {
 	$_SESSION['message'] = "You are already logged in	";
 	header("Location: index.php");
