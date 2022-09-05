@@ -1,5 +1,34 @@
 <?php
-	include('admin/config/dbcon.php');
+	Include('includes\config.php');
+
+    if(isset($_GET['title']))
+    {
+        $slug = mysqli_real_escape_string($con, $_GET['title']);
+
+        $posts ="SELECT slug,meta_title,meta_keyword,meta_description FROM posts WHERE slug='$slug'";
+        $posts_run = mysqli_query($con, $posts);
+
+        if(mysqli_num_rows($posts_run)>0)
+        {
+            $posts_item = mysqli_fetch_array($posts_run);
+            $page_title = $posts_item['meta_title'];
+		    $meta_descriptions = $posts_item['meta_description'];
+		    $meta_keywords = $posts_item['meta_keyword'];
+        }
+        else
+        {
+            $page_title = "Posts Page";
+		    $meta_descriptions = "Posts page description blogging website";
+		    $meta_keywords = "php, html, css, laravel, codeigniter, react js";
+        }
+    }
+    else
+    {
+        $page_title = "Posts Page";
+		$meta_descriptions = "Posts page description blogging website";
+		$meta_keywords = "php, html, css, laravel, codeigniter, react js";
+    }
+
 	Include('includes\header.php');
 	Include('includes\navbar.php');
 ?>

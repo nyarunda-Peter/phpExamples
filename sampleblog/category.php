@@ -1,5 +1,36 @@
 <?php
+    Include('includes\config.php');
+	if(isset($_GET['title']))
+	{
+		$slug = mysqli_real_escape_string($con, $_GET['title']);
 
+		$category = "SELECT slug,meta_title,meta_description,meta_keyword FROM categories WHERE slug='$slug' LIMIT 1";
+		$category_run = mysqli_query($con, $category);
+
+		if(mysqli_num_rows($category_run)>0)
+		{
+			$categoryItem = mysqli_fetch_array($category_run);
+
+			$page_title = $categoryItem['meta_title'];
+			$meta_descriptions = $categoryItem['meta_description'];
+			$meta_keywords = $categoryItem['meta_keyword'];;
+		}
+		else
+		{
+			$page_title = "Category Page";
+			$meta_descriptions = "Category page description blogging website";
+			$meta_keywords = "php, html, css, laravel, codeigniter, react js";
+		}
+	}
+	else
+	{
+		$page_title = "Category Page";
+		$meta_descriptions = "Category page description blogging website";
+		$meta_keywords = "php, html, css, laravel, codeigniter, react js";
+	}
+
+			
+	
 	Include('includes\header.php');
 	Include('includes\navbar.php');
 ?>
@@ -9,6 +40,7 @@
 		<div class="row">		
 			<div class="col-md-9">
 				<?php
+					
 					if(isset($_GET['title']))
 					{
 						$slug = mysqli_real_escape_string($con, $_GET['title']);

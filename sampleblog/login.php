@@ -1,5 +1,9 @@
 <?php
+	Include('includes\config.php');
 	
+	$page_title = "Login Page";
+	$meta_descriptions = "Login page description blogging website";
+	$meta_keywords = "php, html, css, laravel, codeigniter, react js";
 
 	if (isset($_SESSION['auth'])) {
 
@@ -14,8 +18,8 @@
 	Include('includes/navbar.php');
 ?>
 
-<div class ="py-5">
-	<div class="containter">
+<div class ="py-5k">
+	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-5">
 				<div class="card">

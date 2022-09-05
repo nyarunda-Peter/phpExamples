@@ -1,5 +1,10 @@
 <?php
-	include('admin/config/dbcon.php');
+	Include('includes\config.php');
+
+	$page_title = "Home Page";
+	$meta_descriptions = "Home page description blogging website";
+	$meta_keywords = "php, html, css, laravel, codeigniter, react js";
+
 	Include('includes\header.php');
 	Include('includes\navbar.php');
 ?>
