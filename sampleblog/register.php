@@ -1,13 +1,18 @@
 <?php
+	Include('includes\config.php');
+	
+	$page_title = "Register Page";
+	$meta_descriptions = "Register page description blogging website";
+	$meta_keywords = "php, html, css, laravel, codeigniter, react js";
 
-if (isset($_SESSION['auth'])) {
-	$_SESSION['message'] = "You are already logged in	";
-	header("Location: index.php");
-	exit(0);
-}
+	if (isset($_SESSION['auth'])) {
+		$_SESSION['message'] = "You are already logged in	";
+		header("Location: index.php");
+		exit(0);
+	}
 
-Include('includes\header.php');
-Include('includes\navbar.php');
+	Include('includes\header.php');
+	Include('includes\navbar.php');
 
 ?>
 
