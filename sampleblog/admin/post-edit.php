@@ -94,7 +94,7 @@ Include('includes/header.php');
 
                                         <div class="col-md-12 mb-3">
                                             <label for="">Description </label>
-                                            <textarea required name="description" id="summernote" class="form-control" rows="4"><?=$post_row['description']?></textarea>
+                                            <textarea required name="description" id="summernote" class="form-control" rows="4"><?=htmlentities($post_row['description'])?></textarea>
                                         </div>
 
                                         <div class="col-md-12 mb-3">
