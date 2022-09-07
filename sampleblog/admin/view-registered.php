@@ -59,6 +59,9 @@ Include('includes/header.php');
 		    									}elseif ( $row['role_as'] == '0') {
 		    										echo "Regular User";
 		    									}
+												elseif ( $row['role_as'] == '2') {
+		    										echo "Super Admin";
+		    									}
 			    							?>  					
 			    							</td>
 			    							<td><a href="edit-registered.php?id=<?=$row['id']?>" class="btn btn-primary">Edit</a></td>
