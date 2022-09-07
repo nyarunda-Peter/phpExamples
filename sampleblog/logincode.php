@@ -19,7 +19,7 @@ if(isset($_POST['login_btn']))
 			$role_as = $data['role_as'];
 		}
 		$_SESSION['auth'] = true;
-		$_SESSION['auth_role'] = "$role_as"; //1 is equal to admin else normal user
+		$_SESSION['auth_role'] = "$role_as"; //0=normal user, 1=admin, 2=super admin
 		$_SESSION['auth_user'] = [
 			'user_id' => $user_id,
 			'user_name' => $user_name,
@@ -27,13 +27,19 @@ if(isset($_POST['login_btn']))
 		];
 
 
-		if ($_SESSION['auth_role'] == '1') {
+		if ($_SESSION['auth_role'] == '1') { //Admin 
 			
-			$_SESSION['message'] = "Welcome to dashboard";
+			$_SESSION['message'] = "Welcome to Admin dashboard.";
 			header("Location: admin\index.php");
 			exit(0);
 		}
-		elseif ($_SESSION['auth_role'] == '0') 
+		elseif ($_SESSION['auth_role'] == '2') //SuperAdmin
+		{
+			$_SESSION['message'] = "Welcome to SuperAdmin dashboard.";
+			header("Location: admin\index.php");
+			exit(0);
+		}
+		elseif ($_SESSION['auth_role'] == '0') //Users
 		{
 			$_SESSION['message'] = "You are logged in";
 			header("Location: index.php");
@@ -42,7 +48,7 @@ if(isset($_POST['login_btn']))
 		else
 		{
 			$_SESSION['message'] = "Invalid access";
-			header("Location: login.php");
+			header("Location: index.php");
 			exit(0);
 		}
 

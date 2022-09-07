@@ -26,7 +26,7 @@ Include('includes/header.php');
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                       <table class="table table-bordered table-stripe">
+                       <table id="myDataTable" class="table table-bordered table-stripe">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -63,8 +63,8 @@ Include('includes/header.php');
                                                     <a href="post-edit.php?id=<?= $post['id']?>" class="btn btn-success">Edit</a>
                                                 </td>
                                                 <td>
-                                                    <form action="code.php" action="POST">
-                                                        <button type="submit" name="post_delete_btn" value="<?=$post['id']?>" class="btn btn-danger">Delete</a>
+                                                    <form action="post-deleted.php" action="POST">
+                                                        <button type="submit" name="post_delete" value="<?=$post['id']?>" class="btn btn-danger">Delete</a>
                                                     </form>
                                                 </td>
                                             </tr>

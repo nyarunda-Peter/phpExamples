@@ -25,10 +25,9 @@ if(isset($_POST['post_delete_btn']))
 	}
 	else
 	{
-		if(file_exists('../uploads/posts/'.$image))
-		{
+		if(file_exists('../uploads/posts/'.$image)):
 			unlink("../uploads/posts/".$image);
-		}
+		endif;
 		$_SESSION['message'] = "Post deleted successfully";
 		header('Location: post-view.php');
 		exit(0);
@@ -43,7 +42,10 @@ if(isset($_POST['post_update']))
 
 	$category_id = $_POST['category_id'];
 	$name = mysqli_real_escape_string($con, $_POST['name']);
-	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	
+	$string = preg_replace('/[^A-Za-z0-9\-]/','-',$_POST['slug']); //remove all special characters
+	$final_string = preg_replace('/-+/','-',$string);
+	$slug = $final_string;
 	$description = mysqli_real_escape_string($con, $_POST['description']);
 
 	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
@@ -86,7 +88,7 @@ if(isset($_POST['post_update']))
 		}
 		$_SESSION['message'] = "Post updated successfully";
 		//post-view.php
-		header('Location: post-view.php');
+		header('Location: post-edit.php?id='.$post_id);
 		exit(0); 
 	}
 	else
@@ -101,8 +103,12 @@ if(isset($_POST['post_update']))
 if(isset($_POST['post_add']))
 {
 	$category_id = $_POST['category_id'];
+
 	$name = mysqli_real_escape_string($con, $_POST['name']);
-	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	$string = preg_replace('/[^A-Za-z0-9\-]/','-',$_POST['slug']); //remove all special characters
+	$final_string = preg_replace('/-+/','-',$string);
+	$slug = $final_string;
+
 	$description = mysqli_real_escape_string($con, $_POST['description']);
 
 	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
@@ -136,34 +142,17 @@ if(isset($_POST['post_add']))
 }
 
 
-if(isset($_POST['category_delete']))
-{
-	$category_id = $_POST['category_delete'];
-	//2 = delete
-	$query = "UPDATE categories SET status='2' WHERE id='$category_id' LIMIT 1";
-	$query_run = mysqli_query($con, $query);
 
-	if ($query_run) 
-	{
-		$_SESSION['message'] = "Category deleted successfully";
-		header('Location: category-view.php');
-		exit(0);
-	}
-	else
-	{
-		$_SESSION['message'] = "Something went wrong, pleae try again";
-		header('Location: category-view.php');
-		exit(0);
-	}
-
-
-}
 
 if(isset($_POST['category_update']))
 {
 	$category_id = $_POST['category_id'];
+
 	$name = mysqli_real_escape_string($con, $_POST['name']);
-	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+	$string = preg_replace('/[^A-Za-z0-9\-]/','-',$_POST['slug']); //remove all special characters
+	$final_string = preg_replace('/-+/','-',$string);
+
+	$slug = $final_string;
 	$description = mysqli_real_escape_string($con, $_POST['description']);
 
 	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	
@@ -179,7 +168,7 @@ if(isset($_POST['category_update']))
 	if ($query_run) 
 	{
 		$_SESSION['message'] = "Category edited successfully";
-		header('Location: category-view.php');
+		header('Location: category-edit.php?id='.$category_id);
 		exit(0);
 	}
 	else
@@ -194,7 +183,11 @@ if(isset($_POST['category_update']))
 if (isset($_POST['add_category'])) 
 {
 	$name = mysqli_real_escape_string($con, $_POST['name']);
-	$slug = mysqli_real_escape_string($con, $_POST['slug']);
+
+	$string = preg_replace('/[^A-Za-z0-9\-]/','-',$_POST['slug']); //remove all special characters
+	$final_string = preg_replace('/-+/','-',$string);
+	$slug = $final_string;
+
 	$description = mysqli_real_escape_string($con, $_POST['description']);
 
 	$meta_title = mysqli_real_escape_string($con, $_POST['meta_title']);	

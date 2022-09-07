@@ -61,7 +61,7 @@
                                         <label class="text-dark m-2" for="">Posted on : <?=date('d-M-Y', strtotime($postItem['created_at']))?></label>
                                         <hr>
                                         <?php if($postItem['image'] != null):?>
-                                        <img src="uploads/posts/<?=$postItem['image']?>" class="w-25" alt="<?=$postItem['name']?>">                                  
+                                        <img src="<?=base_url('uploads/posts/'.$postItem['image']);?>" class="w-25" alt="<?=$postItem['name']?>">                                  
                                         <?php endif; ?>
                                         <div>
                                             <h5><?=$postItem['name']?></h5>

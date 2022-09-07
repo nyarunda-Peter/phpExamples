@@ -26,28 +26,17 @@ Include('includes/header.php');
                 </div>
                 <div class="card-body">
 
-                    <div class="table table-responsive">
-                        <table class="table table-bordered table-stripe">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Status</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
                     <div class="table-responsive">
-                        <table class="table table-bordered table-stripe">
+                        <table id="myDataTable" class="table table-bordered table-stripe">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Status</th>
                                     <th>Edit</th>
+                                    <?php if($_SESSION['auth_role'] == '2') : ?>
                                     <th>Delete</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,11 +62,13 @@ Include('includes/header.php');
                                                     <td>
                                                         <a href="category-edit.php?id=<?= $item['id']?>" class="btn btn-info">Edit</a>
                                                     </td>
-                                                    <td>
-                                                        <form action="code.php" method="POST">
+                                                    <?php if($_SESSION['auth_role'] == '2') : ?> 
+                                                    <td>                                                                                                                                                                         
+                                                        <form action="code-superadmin.php" method="POST">
                                                             <button type="submit" name="category_delete" value="<?= $item['id']?>" class="btn btn-danger">Delete</button>
                                                         </form>
                                                     </td>
+                                                    <?php endif; ?>
                                                 </tr>
                                             <?php
                                         }
