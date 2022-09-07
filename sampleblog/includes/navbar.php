@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <img src="assets/images/logo.png" class="w-100" alt="SampleBlog Website" width="60px" height="80px">
+        <img src="<?=base_url('assets/images/logo.png')?>" class="w-100" alt="SampleBlog Website" width="60px" height="80px">
       </div>
       <div class="col-md-9">
 
@@ -17,7 +17,9 @@
 
 <nav class="navbar navbar-expand-lg navabar-dark bg-primary shadow sticky-top">
   <div class="container">
-    <a class="navbar-brand d-block d-sa-none d-md-none" href="#"></a>
+    <a class="navbar-brand d-block d-sa-none d-md-none" href="index.php">
+      <img src="<?=base_url('assets/images/logo.png')?>" alt="Sampleblog">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,7 +27,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link text-white" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link text-white" aria-current="page" href="<?=base_url('index.php');?>">Home</a>
         </li>
 
         <?php
@@ -38,7 +40,9 @@
             {
               ?>
               <li class="nav-item">
-                <a class="nav-link text-white" href="category.php?title=<?=$navbarItem['slug']?>"><?=$navbarItem['name']?></a>
+              <!-- <a class="nav-link text-white" href="category.php?title=<?=$navbarItem['slug']?>"><?=$navbarItem['name']?></a> -->
+
+                <a class="nav-link text-white" href="<?=base_url('category/'.$navbarItem['slug'])?>"><?=$navbarItem['name']?></a>
               </li>
               <?php
             }
@@ -55,7 +59,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item " href="#">My Profile</a></li>
             <li>
-              <form method="POST" action="allcode.php">
+              <form method="POST" action="<?=base_url('allcode.php')?>">
                 <button type="submit" class="dropdown-item" name="logout_btn">Logout</button>
               </form>
 
@@ -64,10 +68,10 @@
 
         <?php else : ?>  
         <li class="nav-item">
-         <a class="nav-link text-white" href="login.php">Login</a>
+         <a class="nav-link text-white" href="<?=base_url('login.php')?>">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="register.php">Register</a>
+          <a class="nav-link text-white" href="<?=base_url('register.php')?>">Register</a>
         </li>
       <?php endif; ?>
       </ul>

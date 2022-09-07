@@ -11,8 +11,8 @@
 	<meta name="keywords" content="<?php if(isset($meta_keywords)) {echo "$meta_keywords";} ?>">
 	<meta name="author" content="Sample blog">
 
-	<link rel="stylesheet" href="assets/css/bootstrap5.min.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="<?=base_url('assets/css/bootstrap5.min.css')?>">
+	<link rel="stylesheet" href="<?=base_url('assets/css/custom.css')?>">
 </head>
 <body>
 

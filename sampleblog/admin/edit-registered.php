@@ -1,6 +1,7 @@
 <?php
 
 Include('authentication.php');
+Include('middleware/superAdminAuth.php');
 Include('includes/header.php');
 
 ?>

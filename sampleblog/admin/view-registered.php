@@ -1,6 +1,7 @@
 <?php
 
 Include('authentication.php');
+Include('middleware/superAdminAuth.php');
 Include('includes/header.php');
 
 ?>
@@ -25,7 +26,7 @@ Include('includes/header.php');
 					</h4>
     			</div>
     			<div class="card-body">
-    				<table class="table table-bordered">
+    				<table id="myDataTable" class="table table-bordered">
     					<thead>
     						<tr>
     							<th>ID</th>

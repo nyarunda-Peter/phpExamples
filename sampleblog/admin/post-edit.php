@@ -115,12 +115,13 @@ Include('includes/header.php');
                                         <div class="col-md-12 mb-3">
                                             <label for="">Image </label>
                                             <input type="hidden" name="old_image" value="<?=$post_row['image']?>">
-                                            <input type="file" class="form-control" required name="image">
+                                            <input type="file" class="form-control" name="image">
                                         </div>
 
                                         <div class="col-md-6 mb-3">
                                             <label for="">Status</label>
                                             <input type="checkbox" name="status" <?=$post_row['status'] == '1' ? 'checked':''?> width="100px" height="100px"/>
+                                            </br>checked = hidden, unchecked = visible
                                         </div>
 
                                         <div class="col-md-12 mb-3">

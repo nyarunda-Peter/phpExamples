@@ -4,7 +4,7 @@
 	{
 		$slug = mysqli_real_escape_string($con, $_GET['title']);
 
-		$category = "SELECT slug,meta_title,meta_description,meta_keyword FROM categories WHERE slug='$slug' LIMIT 1";
+		$category = "SELECT slug,meta_title,meta_description,meta_keyword FROM categories WHERE slug='$slug' AND status='0' LIMIT 1";
 		$category_run = mysqli_query($con, $category);
 
 		if(mysqli_num_rows($category_run)>0)
@@ -45,7 +45,7 @@
 					{
 						$slug = mysqli_real_escape_string($con, $_GET['title']);
 
-						$category = "SELECT id,slug FROM categories WHERE slug='$slug' LIMIT 1";
+						$category = "SELECT id,slug FROM categories WHERE slug='$slug' AND status='0' LIMIT 1";
 						$category_run = mysqli_query($con, $category);
 
 						if(mysqli_num_rows($category_run)>0)
@@ -53,7 +53,7 @@
 							$categoryItem = mysqli_fetch_array($category_run);
 							$category_id = $categoryItem['id'];
 
-							$posts ="SELECT category_id,name,slug,created_at FROM posts WHERE category_id='$category_id'";
+							$posts ="SELECT category_id,name,slug,created_at FROM posts WHERE category_id='$category_id' AND status='0'";
 							$posts_run = mysqli_query($con, $posts);
 
 							if(mysqli_num_rows($posts_run)>0)
@@ -62,7 +62,7 @@
 								{
 									?>
 									<div class="card m-2">
-										<a href="post.php?title=<?=$postItem['slug']?>" class="text-decoration-none">
+										<a href="<?=base_url('post/'.$postItem['slug']);?>" class="text-decoration-none">
 											<div class="card card-body shadow-sm ">
 												<h5><?=$postItem['name']?></h5>
 												<div>

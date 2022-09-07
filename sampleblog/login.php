@@ -23,6 +23,8 @@
 		<div class="row justify-content-center">
 			<div class="col-md-5">
 				<div class="card">
+					<?php include('message.php'); ?>
+
 					<div class="card-header">
 						<h4>Login</h4>
 					</div>
